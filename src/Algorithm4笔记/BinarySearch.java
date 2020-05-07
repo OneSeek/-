@@ -11,25 +11,42 @@ import java.util.List;
 public class BinarySearch {
     public static void main(String[] args) {
         int[] a = {1,2,3,4,5,7,8,9};
-        int x = rank(4,a);
-        Arrays.sort(a);
-        System.out.println(x);
+        int x = rank(9,a);
+        int x1 = new Test().binarySearch(a,9);
+        System.out.println(x1);
     }
     public static int rank(int key, int[] a) {
-        int lo = 0;
-        int hi = a.length - 1;
+        int left = 0;
+        int right = a.length - 1;
 
-        while (lo <= hi) {
-            int mid = lo + (hi - lo) / 2;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
             if (key < a[mid]) {
-                hi = mid - 1;
+                right = mid - 1;
             } else if (key > a[mid]) {
-                lo = mid + 1;
+                left = mid + 1;
             }else{
                 return mid;
             }
         }
 
+        return -1;
+    }
+}
+class Test{
+    public int binarySearch(int[] nums,int key){
+        int left = 0,right = nums.length-1;
+        while(left<=right){
+            int mid = left+(right-left)/2;
+            if(nums[mid] == key){
+                return mid;
+            }
+            if(nums[mid]>key){
+                right = mid - 1;
+            }else{
+                left = mid + 1;
+            }
+        }
         return -1;
     }
 }
